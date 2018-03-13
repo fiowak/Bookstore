@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.Bookstore.Domain.Book;
 import com.example.Bookstore.Domain.BookRepository;
+
+import com.example.Bookstore.Domain.UserRepository;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -17,9 +19,18 @@ import java.util.List;
 public class MyController {
     @Autowired
     private BookRepository repository;
+    @Autowired
+    private UserRepository urepository;
+
     @RequestMapping("/index")
     public String home() {
         return "index";
+    }
+
+
+    @RequestMapping(value="/login")
+    public String login() {
+        return "login";
     }
 
     @RequestMapping("/booklist")
