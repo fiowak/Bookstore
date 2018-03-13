@@ -21,7 +21,7 @@ public class UserController {
     private UserRepository repository;
 
     @RequestMapping(value = "signup")
-    public String addStudent(Model model){
+    public String addUser(Model model){
         model.addAttribute("signupform", new SignUpForm());
         return "signup";
     }
@@ -30,23 +30,23 @@ public class UserController {
      * Create new user
      * Check if user already exists & form validation
      *
-     * @param signupForm
+     * @param SignUpForm
      * @param bindingResult
      * @return
      */
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute("signupform") SignUpForm signupForm, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute("signupform") SignUpForm SignUpForm, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) { // validation errors
-            if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // check password match
-                String pwd = signupForm.getPassword();
+            if (SignUpForm.getPassword().equals(SignUpForm.getPasswordCheck())) { // check password match
+                String pwd = SignUpForm.getPassword();
                 BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
                 String hashPwd = bc.encode(pwd);
 
                 User newUser = new User();
                 newUser.setPasswordHash(hashPwd);
-                newUser.setUsername(signupForm.getUsername());
+                newUser.setUsername(SignUpForm.getUsername());
                 newUser.setRole("USER");
-                if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
+                if (repository.findByUsername(SignUpForm.getUsername()) == null) { // Check if user exists
                     repository.save(newUser);
                 }
                 else {

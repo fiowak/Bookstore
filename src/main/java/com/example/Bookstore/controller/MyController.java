@@ -1,6 +1,7 @@
 package com.example.Bookstore.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +45,7 @@ public class MyController {
         repository.delete(id);
         return "redirect:../booklist";
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/add")
     public String addBook(Model model){
         model.addAttribute("book", new Book());
@@ -66,4 +68,7 @@ public class MyController {
     public @ResponseBody Book findBookRest(@PathVariable("id") Long id) {
         return repository.findOne(id);
     }
+
+
+
 }
