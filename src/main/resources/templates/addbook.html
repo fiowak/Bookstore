@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type = "text/css" rel = "stylesheet" href ="/static/css/bootstrap.min.css" th:href = "@{css/bootstrap.min.css}"/>
+
+<head>
+    <title> Booklist  </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 style="align-content: center">  Add book </h1>
+<div style="margin: 100px; align-content: center; " >
+    <form th:object="${book}" th:action="@{save}" action="#" method="post">
+        <label for="tle">Title  </label>
+        <input type="text" id="tle" th:field="*{title}" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+        <label for="authr">Author  </label>
+        <input type="text" id="authr" th:field="*{author}" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+        <label for="yr">Year  </label>
+        <input type="text" id="yr" th:field="*{year}" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+        <label for="prc">Price  </label>
+        <input type="text" id="prc" th:field="*{price}" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+        <label for="isb">Isbn  </label>
+        <input type="text" id="isb" th:field="*{isbn}" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+
+        <input type="submit" value="Save"></input>
+    </form>
+</div>
+</body>
+</html>
